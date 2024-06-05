@@ -28,6 +28,7 @@ The framebuffer device was mapped to memory successfully.
 ```
 * see lv_port_linux_frame_buffer/lv_drivers/display/fbdev.c:159, fbdev_flush()   
 * I modify fbdev_flush() source to rotate screen for LVGL 7 (high version LVGL may be unnecessary)  
+* **TODO**: try to embed c language code to execute fbset -g before running  
 
 ## TODO  
 * (done)  
