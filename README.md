@@ -8,8 +8,10 @@ My Miyoo A30 playground
 * https://github.com/XK9274/a30-sdk-miyoo  
 * https://github.com/XK9274/a30-sdk-miyoo/releases/tag/16042024  
 * NOT tested, maybe works: https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/  
-(use this, same as gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz?) https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz  
-(for 32bit ubuntu?) https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-i686_arm-linux-gnueabihf.tar.xz   
+* for test, please use this x86_64 version, same as gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz /lib64/ld-linux-x86-64.so.2 version (?)  
+https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz  
+* different for 32bit ubuntu (?)  
+https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-i686_arm-linux-gnueabihf.tar.xz   
 
 ## lv_port_linux_frame_buffer  
 * Mod from https://gitee.com/RCSN/lv_port_linux_frame_buffer_mq_d1s  
