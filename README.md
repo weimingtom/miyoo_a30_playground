@@ -6,7 +6,9 @@ My Miyoo A30 playground
 * **Don't use ubuntu/xubuntu apt install version !!!**, download XK9274/a30-sdk-miyoo releases
 * **GET gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz FROM sdk_miyoo282_allwinnerA33.tgz**, running under xubuntu 20.04 64bit     
 * https://github.com/XK9274/a30-sdk-miyoo  
-* https://github.com/XK9274/a30-sdk-miyoo/releases/tag/16042024  
+* https://github.com/XK9274/a30-sdk-miyoo/releases/tag/16042024
+
+## Not tested gcc  
 * NOT tested, maybe works: https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/  
 * for test, please use this x86_64 version, same as gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz /lib64/ld-linux-x86-64.so.2 version (?)  
 https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz  
