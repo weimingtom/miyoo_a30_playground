@@ -3,7 +3,8 @@ My Miyoo A30 playground
 
 ## Cross compile toolchain gcc    
 * gcc-linaro-7.5.0-arm-linux-gnueabihf, arm-linux-gnueabihf-gcc  
-* **Don't use ubuntu/xubuntu apt install version !!!**, download XK9274/a30-sdk-miyoo releases     
+* **Don't use ubuntu/xubuntu apt install version !!!**, download XK9274/a30-sdk-miyoo releases
+* **GET gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz FROM sdk_miyoo282_allwinnerA33.tgz**, running under xubuntu 20.04 64bit     
 * https://github.com/XK9274/a30-sdk-miyoo  
 * https://github.com/XK9274/a30-sdk-miyoo/releases/tag/16042024  
 
