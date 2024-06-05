@@ -33,6 +33,32 @@ The framebuffer device was mapped to memory successfully.
 * see lv_port_linux_frame_buffer/lv_drivers/display/fbdev.c:159, fbdev_flush()   
 * I modify fbdev_flush() source to rotate screen for LVGL 7 (high version LVGL may be unnecessary)  
 * **TODO**: try to embed c language code to execute fbset -g before running  
+* patches:  
+https://github.com/weimingtom/miyoo_a30_playground/blob/master/lv_port_linux_frame_buffer/lv_conf.h  
+```
+#define LV_HOR_RES_MAX          (640)//(480)//(800)
+#define LV_VER_RES_MAX          (480)//(640)//(480)//1280)
+```
+https://github.com/weimingtom/miyoo_a30_playground/blob/master/lv_port_linux_frame_buffer/lv_drivers/display/fbdev.c  
+```
+//rotate and flip
+//exchange x and y, and flip x
+	int32_t x;
+	uint32_t *color32 = (uint32_t *)color_p;
+	for(y = act_y1; y <= act_y2; ++y) {
+	    for (x = act_x1; x <= act_x2; ++x) {
+if (y < 0 || y >= vinfo.xres) continue;
+if ((vinfo.yres - x - 1) < 0 || (vinfo.yres - x - 1) >= vinfo.yres) continue;
+
+if (x - act_x1 < 0 || x - act_x1 >= (act_x2 - act_x1 + 1)) continue;
+if ((y - act_y1) < 0 || (y - act_y1) >= (act_y2 - act_y1 + 1)) continue;
+
+            fbp32[(vinfo.yres - x - 1 + vinfo.yoffset) * vinfo.xres + y] =  
+				color32[(act_x2 - act_x1 + 1) * (y - act_y1) + (x - act_x1)]; 
+	    }
+    }
+```
+
 
 ## TODO  
 * (done)  
