@@ -7,6 +7,9 @@ My Miyoo A30 playground
 * **GET gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz FROM sdk_miyoo282_allwinnerA33.tgz**, running under xubuntu 20.04 64bit     
 * https://github.com/XK9274/a30-sdk-miyoo  
 * https://github.com/XK9274/a30-sdk-miyoo/releases/tag/16042024  
+* NOT tested, maybe works: https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/  
+(use this, same as gcc-linaro-7.5.0-arm-linux-gnueabihf.tgz?) https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-x86_64_arm-linux-gnueabihf.tar.xz  
+(for 32bit ubuntu?) https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/gcc-linaro-7.5.0-2019.12-i686_arm-linux-gnueabihf.tar.xz   
 
 ## lv_port_linux_frame_buffer  
 * Mod from https://gitee.com/RCSN/lv_port_linux_frame_buffer_mq_d1s  
