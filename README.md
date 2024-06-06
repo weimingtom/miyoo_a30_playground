@@ -59,6 +59,37 @@ if ((y - act_y1) < 0 || (y - act_y1) >= (act_y2 - act_y1 + 1)) continue;
     }
 ```
 
+## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so ()    
+* main.c from src_sdltest.7z of https://github.com/steward-fu/archives/releases?q=miyoo&expanded=true  
+* graywin.c from libsdl-1 test code    
+* sdl-main.zip from https://github.com/steward-fu/sdl  
+* sdl-main patch see sdltest/sdl-main.tar.gz  
+```
+//src/joystick/a30/SDL_a30_joystick.c:549
+        static int xx = 320 / 2;
+        static int yy = 240 / 2;
+//src/video/a30/SDL_a30_video.c:71, '.rgb' -> '.bgr'
+    "    if (s_alpha >= 2.0) {                                 \n"
+    "        gl_FragColor = texture2D(s_texture, v_texCoord).bgra;  \n" //ori none
+    "    }                                                     \n"
+    "    else if (s_alpha > 0.0) {                             \n"
+    "        vec3 tex = texture2D(s_texture, v_texCoord).bgr;  \n" //ori .rgb
+    "        gl_FragColor = vec4(tex, s_alpha);                \n"
+    "    }                                                     \n"
+    "    else {                                                \n"
+    "        vec3 tex = texture2D(s_texture, v_texCoord).bgr;  \n" //ori .rgb
+    "        gl_FragColor = vec4(tex, 1.0);                    \n"
+    "    }                                                     \n"
+```
+* Usage:  
+```
+> adb push graywin /mnt/SDCARD/
+> adb push sdltest /mnt/SDCARD/
+> adb shell
+...
+# /mnt/SDCARD/graywin
+# /mnt/SDCARD/sdltest
+```
 
 ## TODO  
 * (done)  
