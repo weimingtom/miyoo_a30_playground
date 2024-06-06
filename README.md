@@ -59,10 +59,12 @@ if ((y - act_y1) < 0 || (y - act_y1) >= (act_y2 - act_y1 + 1)) continue;
     }
 ```
 
-## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so (actually libMali.so)    
+## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so (actually libMali.so), my sdl build no sound (?)      
 * main.c from src_sdltest.7z of https://github.com/steward-fu/archives/releases?q=miyoo&expanded=true  
 * graywin.c from libsdl-1 test code    
-* sdl-main.zip from https://github.com/steward-fu/sdl  
+* sdl-main.zip from https://github.com/steward-fu/sdl
+* configure command like this:  
+CFLAGS=-I/home/wmt/work_a30/staging_dir/target/usr/include LDFLAGS=-L/home/wmt/work_a30/staging_dir/target/usr/lib PATH=/home/wmt/work_a30/gcc-linaro-7.5.0-arm-linux-gnueabihf/bin/:$PATH ./configure --prefix=/home/wmt/work_a30/sdl --host=arm-linux-gnueabihf --disable-pulseaudio --enable-video-a30   
 * sdl-main patch see sdltest/sdl-main.tar.gz  
 ```
 //src/joystick/a30/SDL_a30_joystick.c:549
