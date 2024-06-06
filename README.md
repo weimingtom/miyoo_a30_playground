@@ -59,7 +59,7 @@ if ((y - act_y1) < 0 || (y - act_y1) >= (act_y2 - act_y1 + 1)) continue;
     }
 ```
 
-## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so ()    
+## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so (actually libMali.so)    
 * main.c from src_sdltest.7z of https://github.com/steward-fu/archives/releases?q=miyoo&expanded=true  
 * graywin.c from libsdl-1 test code    
 * sdl-main.zip from https://github.com/steward-fu/sdl  
