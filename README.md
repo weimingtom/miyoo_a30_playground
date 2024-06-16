@@ -93,7 +93,7 @@ CFLAGS=-I/home/wmt/work_a30/staging_dir/target/usr/include LDFLAGS=-L/home/wmt/w
 # /mnt/SDCARD/sdltest
 ```
 
-## JaeSeoKim/sdl-flip-clock  
+## flipclock, /mnt/SDCARD/App/flipclock    
 * https://github.com/JaeSeoKim/sdl-flip-clock  
 * Study in weibo
 ```
