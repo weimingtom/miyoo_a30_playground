@@ -93,5 +93,21 @@ CFLAGS=-I/home/wmt/work_a30/staging_dir/target/usr/include LDFLAGS=-L/home/wmt/w
 # /mnt/SDCARD/sdltest
 ```
 
+## JaeSeoKim/sdl-flip-clock  
+* https://github.com/JaeSeoKim/sdl-flip-clock  
+* Study in weibo
+```
+不知道SDL_RenderCopyEx的原理是什么，反正好像是可以任意旋转角度，难道是软件实现仿射的吗？
+如果这样就有点SDL1代码中影子缓冲的感觉，其实就是软件实现旋转，牺牲一下性能，
+不过SDL1的shadow buffer比较麻烦，它是每次产生局部刷新的时候都要仿射一下，
+不是说整个屏幕旋转一次
+```
+```
+我初步猜测是这样，可能miyoo a30的SDL2程序是通过SDL_RenderCopyEx来旋转，
+证据是我比较过我用JaeSeoKim/sdl-flip-clock编译出来的文件和原版掌机上的elf文件，
+发现好像改变了这个API名称入口。如图右侧是原版横屏正常版本，
+使用SDL_RenderCopyEx旋转回去，当然这只是猜测，以后找时间试验 ​​​
+```
+
 ## TODO  
 * (done)  
