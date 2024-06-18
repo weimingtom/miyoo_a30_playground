@@ -1,4 +1,4 @@
-# miyoo_a30_playground
+﻿# miyoo_a30_playground
 My Miyoo A30 playground
 
 ## Cross compile toolchain gcc    
@@ -188,12 +188,11 @@ return ret;
 _G.video = SDL_CreateRGBSurface(0, 640, 480, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
 _G.texture = SDL_CreateTexture(_G.renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, 640, 480);
 ```
-* https://wiki.libsdl.org/SDL2/CategoryAPI
-* https://github.com/EXL/P2kElfs/blob/master/Yeti3D-Old/main_sdl2.c
-=======
-## flipclock, /mnt/SDCARD/App/flipclock    
+* https://wiki.libsdl.org/SDL2/CategoryAPI  
+* https://github.com/EXL/P2kElfs/blob/master/Yeti3D-Old/main_sdl2.c  
+* flipclock, /mnt/SDCARD/App/flipclock    
 * https://github.com/JaeSeoKim/sdl-flip-clock  
-* Study in weibo
+* Study in weibo  
 ```
 不知道SDL_RenderCopyEx的原理是什么，反正好像是可以任意旋转角度，难道是软件实现仿射的吗？
 如果这样就有点SDL1代码中影子缓冲的感觉，其实就是软件实现旋转，牺牲一下性能，
@@ -204,7 +203,7 @@ _G.texture = SDL_CreateTexture(_G.renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUR
 我初步猜测是这样，可能miyoo a30的SDL2程序是通过SDL_RenderCopyEx来旋转，
 证据是我比较过我用JaeSeoKim/sdl-flip-clock编译出来的文件和原版掌机上的elf文件，
 发现好像改变了这个API名称入口。如图右侧是原版横屏正常版本，
-使用SDL_RenderCopyEx旋转回去，当然这只是猜测，以后找时间试验 ​​​
+使用SDL_RenderCopyEx旋转回去，当然这只是猜测，以后找时间试验 ???
 ```
 
 ## TODO  
