@@ -59,10 +59,12 @@ if ((y - act_y1) < 0 || (y - act_y1) >= (act_y2 - act_y1 + 1)) continue;
     }
 ```
 
-## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so (actually libMali.so)    
+## sdltest for steward-fu/sdl static libsdl.a lib, need libEGL.so and libGLESv2.so (actually libMali.so), my sdl build no sound (?)      
 * main.c from src_sdltest.7z of https://github.com/steward-fu/archives/releases?q=miyoo&expanded=true  
 * graywin.c from libsdl-1 test code    
-* sdl-main.zip from https://github.com/steward-fu/sdl  
+* sdl-main.zip from https://github.com/steward-fu/sdl
+* configure command like this: (need uncompress staging_dir.tgz from XK9274/a30-sdk-miyoo releases)    
+CFLAGS=-I/home/wmt/work_a30/staging_dir/target/usr/include LDFLAGS=-L/home/wmt/work_a30/staging_dir/target/usr/lib PATH=/home/wmt/work_a30/gcc-linaro-7.5.0-arm-linux-gnueabihf/bin/:$PATH ./configure --prefix=/home/wmt/work_a30/sdl --host=arm-linux-gnueabihf --disable-pulseaudio --enable-video-a30   
 * sdl-main patch see sdltest/sdl-main.tar.gz  
 ```
 //src/joystick/a30/SDL_a30_joystick.c:549
@@ -91,103 +93,21 @@ if ((y - act_y1) < 0 || (y - act_y1) >= (act_y2 - act_y1 + 1)) continue;
 # /mnt/SDCARD/sdltest
 ```
 
-## flipClock from https://github.com/JaeSeoKim/sdl-flip-clock  
-* rotate 90 degree (270 degree) with SDL_RenderCopyEx
-* src/render.c:  
+## flipclock, /mnt/SDCARD/App/flipclock    
+* https://github.com/JaeSeoKim/sdl-flip-clock  
+* Study in weibo
 ```
-int RenderPresent(SDL_Renderer *renderer, SDL_Window *window) {
-#if defined SDL && SDL == 1
-  return SDL_BlitSurface(renderer, NULL, window, NULL);
-#else
-
-#if 1
-//see https://wiki.libsdl.org/SDL2/CategoryAPI
-//see https://github.com/EXL/P2kElfs/blob/master/Yeti3D-Old/main_sdl2.c
-SDL_UpdateTexture(_G.texture, NULL, _G.video->pixels, _G.video->pitch);
-SDL_Rect rect = {0};
-rect.x = (480 - 640) / 2; //-80;
-rect.y = (640 - 480) / 2; //80;
-rect.w = 640 * 1;
-rect.h = 480 * 1;
-SDL_Point p = {0};
-p.x = 640 / 2;//320;
-p.y = 480 / 2;//240;
-SDL_RenderCopyEx(renderer, _G.texture, NULL, &rect, 270, &p, SDL_FLIP_NONE);
-SDL_RenderPresent(renderer);
-return 0;
-#else
-
-  SDL_RenderPresent(renderer);
-  return 0;
-#endif
-#endif
-}
+不知道SDL_RenderCopyEx的原理是什么，反正好像是可以任意旋转角度，难道是软件实现仿射的吗？
+如果这样就有点SDL1代码中影子缓冲的感觉，其实就是软件实现旋转，牺牲一下性能，
+不过SDL1的shadow buffer比较麻烦，它是每次产生局部刷新的时候都要仿射一下，
+不是说整个屏幕旋转一次
 ```
 ```
-int RenderFillRect(SDL_Renderer *dst, SDL_Rect *rect, Uint32 color) {
-#if defined SDL && SDL == 1
-  return SDL_FillRect(dst, rect, color);
-#else
-
-#if 1
-SDL_FillRect(_G.video, rect, color);
-#endif
-
-  SDL_SetRenderDrawColor(dst, color >> 16 & 255, color >> 8 & 255, color & 255,
-                         color >> 24 & 255);
-  return SDL_RenderFillRect(dst, rect);
-#endif
-}
+我初步猜测是这样，可能miyoo a30的SDL2程序是通过SDL_RenderCopyEx来旋转，
+证据是我比较过我用JaeSeoKim/sdl-flip-clock编译出来的文件和原版掌机上的elf文件，
+发现好像改变了这个API名称入口。如图右侧是原版横屏正常版本，
+使用SDL_RenderCopyEx旋转回去，当然这只是猜测，以后找时间试验 ​​​
 ```
-```
-int RenderClear(SDL_Renderer *dst, Uint32 color) {
-#if defined SDL && SDL == 1
-  return RenderFillRect(dst, NULL, color);
-#else
-
-#if 1
-return SDL_FillRect(_G.video, NULL, color);
-#else
-
-  SDL_SetRenderDrawColor(dst, color >> 16 & 255, color >> 8 & 255, color & 255,
-                         color >> 24 & 255);
-  return SDL_RenderClear(dst);
-#endif
-
-#endif
-}
-```
-```
-
-int BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Renderer *dst,
-                SDL_Rect *dstrect) {
-#if defined SDL && SDL == 1
-  return SDL_BlitSurface(src, srcrect, dst, dstrect);
-#else
-
-#if 1
-int ret = SDL_BlitSurface(src, srcrect, _G.video, dstrect);
-return ret;
-#else
-  SDL_Texture *mTexture = SDL_CreateTextureFromSurface(dst, src);
-  if (mTexture == NULL) {
-    return -1;
-  }
-  int ret = SDL_RenderCopy(dst, mTexture, NULL, dstrect);
-  SDL_DestroyTexture(mTexture);
-  return ret;
-#endif
-
-#endif
-};
-```
-* src/init.c:  
-```
-_G.video = SDL_CreateRGBSurface(0, 640, 480, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
-_G.texture = SDL_CreateTexture(_G.renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, 640, 480);
-```
-* https://wiki.libsdl.org/SDL2/CategoryAPI
-* https://github.com/EXL/P2kElfs/blob/master/Yeti3D-Old/main_sdl2.c
 
 ## TODO  
 * (done)  
