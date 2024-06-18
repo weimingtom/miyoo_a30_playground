@@ -214,4 +214,5 @@ SDL_CreateTexture和SDL_BlitSurface应该可以实现类似SDL1影子缓冲的�
 ```
 
 ## TODO  
+* Copy sdl-flip-clock sdl2 include and lib stage files  
 * (done)  
