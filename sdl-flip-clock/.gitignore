@@ -1,0 +1,7 @@
+# Trash files
+.DS_Store
+
+# output
+objs
+flipClock
+FlipClock-v*.zip
