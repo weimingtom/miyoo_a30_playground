@@ -203,7 +203,14 @@ _G.texture = SDL_CreateTexture(_G.renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUR
 我初步猜测是这样，可能miyoo a30的SDL2程序是通过SDL_RenderCopyEx来旋转，
 证据是我比较过我用JaeSeoKim/sdl-flip-clock编译出来的文件和原版掌机上的elf文件，
 发现好像改变了这个API名称入口。如图右侧是原版横屏正常版本，
-使用SDL_RenderCopyEx旋转回去，当然这只是猜测，以后找时间试验 ???
+使用SDL_RenderCopyEx旋转回去，当然这只是猜测，以后找时间试验
+```
+```
+我想换一种思路去解决SDL_RenderCopyEx旋转90度问题，根据上次的截图，
+其实原版的flipClock还多用了这几个API：
+SDL_UpdateTexture，SDL_CreateTexture，SDL_UpperBlit（即SDL_BlitSurface）。
+SDL_CreateTexture和SDL_BlitSurface应该可以实现类似SDL1影子缓冲的效果
+（只需要旋转一次），但目前还没有试验和头绪（最好能找到类似的代码）
 ```
 
 ## TODO  
