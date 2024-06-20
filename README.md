@@ -94,7 +94,8 @@ CFLAGS=-I/home/wmt/work_a30/staging_dir/target/usr/include LDFLAGS=-L/home/wmt/w
 ```
 
 ## flipClock from https://github.com/JaeSeoKim/sdl-flip-clock  
-* rotate 90 degree (270 degree) with SDL_RenderCopyEx
+* rotate -90 degree (270 degree) with SDL_RenderCopyEx
+* also see https://github.com/steward-fu/website/releases/download/miyoo-a30/src_app_flipclock-v1.1.zip  
 * src/render.c:  
 ```
 int RenderPresent(SDL_Renderer *renderer, SDL_Window *window) {
