@@ -214,6 +214,9 @@ SDL_CreateTexture和SDL_BlitSurface应该可以实现类似SDL1影子缓冲的�
 （只需要旋转一次），但目前还没有试验和头绪（最好能找到类似的代码）
 ```
 
+## sdl2test, for testing libSDL2-2.0.so.0 in staging_dir    
+* WIP  
+
 ## TODO  
 * Copy sdl-flip-clock sdl2 include and lib stage files  
 * (done)  
