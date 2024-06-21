@@ -214,8 +214,28 @@ SDL_CreateTexture和SDL_BlitSurface应该可以实现类似SDL1影子缓冲的�
 （只需要旋转一次），但目前还没有试验和头绪（最好能找到类似的代码）
 ```
 
-## sdl2test, for testing libSDL2-2.0.so.0 in staging_dir    
+## (TODO) sdl2test, for testing libSDL2-2.0.so.0 in staging_dir    
 * WIP  
+
+## (TODO) SDL-1.2.15, with shadow buffer rotate  
+* WIP
+* TODO:  
+```
+> adb shell 
+# getevent
+# cat /dev/input/event3
+# getevent /dev/input/event3 -t -l -v
+
+src/video/fbcon/SDL_fbvideo.c
+#define FBCON_DEBUG
+SDL_VIDEO_FBCON_ROTATION=NONE,CW,CCW,UD
+
+# killall -KILL main MainUI
+# fbset -g 640 640 640 640 32
+# /mnt/SDCARD/graywin1215 -width 640 -height 480
+
+why use = (0xFF000000 | xxxx) ??? 
+```
 
 ## TODO  
 * Copy sdl-flip-clock sdl2 include and lib stage files  
